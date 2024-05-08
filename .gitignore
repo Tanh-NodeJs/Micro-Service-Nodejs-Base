@@ -1,2 +1,4 @@
 Api_Gate_Way/node_modules/
 User_Service/node_modules/
+Api_Gate_Way/.env
+User_Service/.env
