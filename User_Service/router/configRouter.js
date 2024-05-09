@@ -13,7 +13,6 @@ router.get('/config',(req,res)=>{
         }
     }
     for (const [key, value] of Object.entries(userConst)) {
-        console.log(value)
         for (const [keyLOGIN, valueLogin] of Object.entries(value)) {
             if(keyLOGIN==='_CODE')
                 {
