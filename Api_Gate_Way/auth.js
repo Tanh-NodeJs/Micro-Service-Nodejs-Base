@@ -1,7 +1,7 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const secret =process.env.jwtSecret;
 const verifyToken =async(req,res,next)=> {
-    const token =req.token
+    const token =req.body?.token||req.query?.token||req.header["x-access-token"];
     if(!token)
         return res.status(401).send({
             token: false,
@@ -32,24 +32,13 @@ const verifyToken =async(req,res,next)=> {
 const setupAuth = (app, routes) => {
 
     routes.forEach(r => {
+       
+          
         if (r.auth) {
-            const target=  r.proxy.target;
-            const proxyOptions ={
-                target,
-                changeOrigin: true,
-                pathRewrite: {
-                  [`^${r.url}`]: "",
-                },
-            }
-            app.use(r.url, verifyToken, createProxyMiddleware(proxyOptions));
+            app.use(r.url, verifyToken, createProxyMiddleware(r.proxy));
         }
         else {
-            const target= "https://www.freecodecamp.org";
-            const proxyOptions ={
-                target:target,
-                changeOrigin: true
-            }
-            app.use(r.url, createProxyMiddleware(proxyOptions));
+            app.use(r.url, createProxyMiddleware(r.proxy));
         }
     });
 }

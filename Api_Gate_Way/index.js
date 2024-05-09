@@ -6,18 +6,18 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 const {ROUTES} = require("./routes");
 const {setupAuth} = require("./auth");
 const {setupLogging} = require("./logging");
-const {setupProxies} = require("./proxy");
+// const {setupProxies} = require("./proxy");
 
 
 // Create an instance of Express app
 const app = express();
-setupLogging(app);
 setupAuth(app, ROUTES);
-setupProxies(app, ROUTES);
+setupLogging(app);
+// setupProxies(app, ROUTES);
 // Middleware setup
 app.use(cors()); // Enable CORS
-// app.use(helmet()); // Add security headers
-// app.use(morgan("combined")); // Log HTTP requests
+app.use(helmet()); // Add security headers
+app.use(morgan("combined")); // Log HTTP requests
 app.disable("x-powered-by"); // Hide Express server information
 
 
