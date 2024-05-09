@@ -53,7 +53,7 @@ const userLogin= async (username,password)=>{
 
         result.status=userConst.LOGIN_SUCCESS._CODE;
         result.data=user;
-        client_redis.hmset("user:"+user.userId,user);
+        client_redis.hSet("user:"+user.userId,user);
         return result;
 }
 module.exports={tokenCreateFromUserLogin,userLogin}
