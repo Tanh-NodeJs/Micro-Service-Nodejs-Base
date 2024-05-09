@@ -59,6 +59,7 @@ app.use(fileUpload({
 /*router*/
 // import router
 const authRouter = require('./router/AuthRouter');
+const configRouter = require('./router/configRouter');
 const getUserLang = require('./middleware/requestMiddlaware');
 
 app.use(express.static('stogare'));
@@ -72,6 +73,7 @@ app.use('/stogare', express.static('stogare'));
 app.all('*', getUserLang);
     
 app.use('/api/user',authRouter);
+app.use('/',configRouter);
 
 
 

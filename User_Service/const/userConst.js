@@ -7,7 +7,7 @@ const userConst={
     LOGIN_SUCCESS:{
         VN:"Đăng nhập thành công",
         EN:"Login completed",
-        _CODE:"LOGINSUCCESS",
+        _CODE:"LOGIN_SUCCESS",
     },
     BLOCKED_ACCOUNT:{
         VN:"Tài khoản bị khoá",
