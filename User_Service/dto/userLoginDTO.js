@@ -5,8 +5,10 @@ const userLoginDTO={
         statusCode:null,
         message:null,
         data:{
-            token:null,
-            expriedToken:null,
+            token:{
+                value:null,
+                expires:null
+            },
             user:userDataDTO
         }
     }

@@ -1,6 +1,6 @@
 const { sysConst } = require("../const/systemDefault");
 
-const getUserLang=async(req,res,next)=>{
+const getUserInfo=async(req,res,next)=>{
    
     try{
         const lang=req?.body?.region||req?.query?.region||req.header("region");
@@ -9,12 +9,17 @@ const getUserLang=async(req,res,next)=>{
             return next()
         }
         req.lang=sysConst.DEFAULT_LANG;
+
+
+        const clientIp= req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        req.clientIp=clientIp;
         return next()
     }
     catch(err){
         console.log(err)
         req.lang=sysConst.DEFAULT_LANG;
+        req.clientIp=sysConst.DEFAULT_IP;
         return next()
     }
 }
-module.exports=getUserLang;
+module.exports=getUserInfo;

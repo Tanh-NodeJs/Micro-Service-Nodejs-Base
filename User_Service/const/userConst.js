@@ -13,6 +13,11 @@ const userConst={
         VN:"Tài khoản bị khoá",
         EN:"Account locked",
         _CODE:"ACC_LOCKED",
+    },
+    SEESSION_EXPIRED:{
+        VN:"Phiên bản đã hết hạn",
+        EN:"Session expired",
+        _CODE:"SEESSION_EXPIRED",
     }
 
     

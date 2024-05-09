@@ -1,5 +1,6 @@
 const sysConst={
-    DEFAULT_LANG:"VN"
+    DEFAULT_LANG:"VN",
+    DEFAULT_IP:"::1"
 
 
 
