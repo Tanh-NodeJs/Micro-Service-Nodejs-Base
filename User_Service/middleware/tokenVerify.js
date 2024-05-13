@@ -17,18 +17,19 @@ const verifyToken =async(req,res,next)=> {
             valid: false,
             status:"MISSING_TOKEN"
         });
-        const seconds = 1000;
-        const d = new Date();
-        const t= d.getTime();
-        if(decodedToken.exp< Math.round(t / seconds))
-            return res.status(401).send({
-                token: true,
-                valid: false,
-                status:"EXPIRED_TOKEN"
-            });
-        req.decodedToken=decode;
-        req.token=token;
-        next();
+
+    const seconds = 1000;
+    const d = new Date();
+    const t= d.getTime();
+    if(decodedToken.exp< Math.round(t / seconds))
+        return res.status(401).send({
+            token: true,
+            valid: false,
+            status:"EXPIRED_TOKEN"
+        });
+    req.decodedToken=decode;
+    req.token=token;
+    next();
 }
 
 
