@@ -1,10 +1,10 @@
 //todo : get from database table roles later
-const roleDTO={
+const roleConst={
     SUPER_ADMIN:"SUPER_ADMIN",
 
   }
   
   
   module.exports={
-    roleDTO
+    roleConst
   }

@@ -1,5 +1,5 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const { tokenDTO } = require('./dto/tokenDTO');
+const { tokenConst } = require('./const/tokenConst');
 const secret =process.env.jwtSecret;
 const verifyToken =async(req,res,next)=> {
     const token =req.body?.token||req.query?.token||req.header["x-access-token"];
@@ -7,7 +7,7 @@ const verifyToken =async(req,res,next)=> {
         return res.status(401).send({
             token: false,
             valid: false,
-            status:tokenDTO.MISSING_TOKEN
+            status:tokenConst.MISSING_TOKEN
         });
 
     // Verify the token using jwt.verify method
@@ -16,7 +16,7 @@ const verifyToken =async(req,res,next)=> {
         return res.status(401).send({
             token: false,
             valid: false,
-            status:tokenDTO.MISSING_TOKEN
+            status:tokenConst.MISSING_TOKEN
         });
         const seconds = 1000;
         const d = new Date();
@@ -25,7 +25,7 @@ const verifyToken =async(req,res,next)=> {
             return res.status(401).send({
                 token: true,
                 valid: false,
-                status:tokenDTO.EXPIRED_TOKEN
+                status:tokenConst.EXPIRED_TOKEN
             });
         req.tokenDecoed=decodedToken;
         next();
@@ -37,7 +37,7 @@ const verifySuperAdmin =async(req,res,next)=> {
         return res.status(401).send({
             token: true,
             valid: false,
-            status:tokenDTO.INVALID_ROLE
+            status:tokenConst.INVALID_ROLE
         });
     next();
 }

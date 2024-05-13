@@ -1,5 +1,5 @@
 
-const requestDTO={
+const requestConst={
    STATUS_CODES_OK:"OK"
  
     //todo :add more later
@@ -7,5 +7,5 @@ const requestDTO={
  
  
  module.exports={
-    requestDTO
+   requestConst
  }

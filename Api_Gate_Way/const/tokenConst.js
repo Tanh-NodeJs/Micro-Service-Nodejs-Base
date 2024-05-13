@@ -1,5 +1,5 @@
 
-const tokenDTO={
+const tokenConst={
     MISSING_TOKEN:"MISSING_TOKEN",
     EXPIRED_TOKEN:"EXPIRED_TOKEN",
     INVALID_ROLE:"INVALID_ROLE"
@@ -8,5 +8,5 @@ const tokenDTO={
   
   
   module.exports={
-    tokenDTO
+    tokenConst
   }

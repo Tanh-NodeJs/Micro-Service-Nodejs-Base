@@ -2,7 +2,7 @@ const express=require("express");
 const { userConst } = require("../const/userConst");
 const router=express.Router();
 const redis = require('redis');
-const { requestDTO } = require("../dto/requestDTO");
+const { requestConst } = require("../const/requestConst");
 const client_redis = redis.createClient();
 const KEY_CONFIG_NAME="USER_SERVICE_CONFIG_USER_LOGIN_STATUS_CODE"
 router.get('/config',async (req, res) => {
@@ -33,7 +33,7 @@ router.get('/reset-config',async (req, res) => {
     await client_redis.connect();
     await client_redis.del(KEY_CONFIG_NAME);
     client_redis.disconnect();
-    res.send(requestDTO.STATUS_CODES_OK);
+    res.send(requestConst.STATUS_CODES_OK);
 });
 
 module.exports=router
