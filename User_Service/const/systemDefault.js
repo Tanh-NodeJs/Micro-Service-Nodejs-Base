@@ -1,4 +1,4 @@
-const sysConst={
+const sysConstDefault={
     DEFAULT_LANG:"VN",
     DEFAULT_IP:"::1"
 
@@ -7,5 +7,5 @@ const sysConst={
 
 }
 module.exports = {
-    sysConst
+    sysConstDefault
 }

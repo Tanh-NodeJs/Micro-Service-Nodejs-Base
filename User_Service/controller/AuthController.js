@@ -10,14 +10,13 @@ const login = async (req, res) => {
         const reqPassword=req.body.password;
         const responseLogin=userLoginDTO.responseLogin;
         const user=await userLogin(reqUserName,reqPassword);//data mock checklogin later
-        if(!user)
+        if(user.data===null)
             {
                 responseLogin.statusCode=userConst.WRONG_USERNAME_OR_PASSWORD._CODE;
                 responseLogin.message=userConst.WRONG_USERNAME_OR_PASSWORD[lang];
-        
+                responseLogin.data=null;
                 return res.send(responseLogin)
             }
-            
         user.clientIp=req.clientIp
         const tokenData =await tokenCreateFromUserLogin(user);
         responseLogin.statusCode=userConst.LOGIN_SUCCESS._CODE;
