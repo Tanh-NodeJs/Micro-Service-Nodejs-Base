@@ -5,7 +5,9 @@ const userDataDTO={
    lastName:null,
    email:null,
    userName:null,
-   passWord:null
+   passWord:null,
+   locked:false
+
    //todo :add more later
 }
 

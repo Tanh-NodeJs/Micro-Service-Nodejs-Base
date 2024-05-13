@@ -3,7 +3,7 @@ const ROUTES = [
         url: '/user/login',
         auth: false,
         proxy: {
-            target: "http://localhost:1212/api/user/login",
+            target: process.env.API_USER_LOGIN,
             changeOrigin: true
         }
     }

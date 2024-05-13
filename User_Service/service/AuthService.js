@@ -39,12 +39,12 @@ const userLogin= async (username,password)=>{
     
     //todo: login user
     // const user={} do login here
-    if(false)//wrong username or password
+    if(user.userId==null)//wrong username or password
         {
             result.status=userConst.WRONG_USERNAME_OR_PASSWORD._CODE;
             return result;
         }
-    if(false)//locked account
+    if(user.locked)//locked account
         {
             result.status=userConst.BLOCKED_ACCOUNT._CODE;
             return result;
