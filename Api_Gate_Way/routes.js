@@ -6,6 +6,14 @@ const ROUTES = [
             target: process.env.API_USER_LOGIN,
             changeOrigin: true
         }
+    },
+    {
+        url: '/userService/config',
+        auth: false,
+        proxy: {
+            target: process.env.API_USER_LOGIN_CONFIG,
+            changeOrigin: true
+        }
     }
 ]
 
