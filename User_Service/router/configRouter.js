@@ -5,7 +5,7 @@ const redis = require('redis');
 const { requestConst } = require("../const/requestConst");
 const client_redis = redis.createClient();
 const KEY_CONFIG_NAME = "USER_SERVICE_CONFIG_USER_LOGIN_STATUS_CODE";
-
+const { flatten, unflatten } = require('safe-flat')
 router.get('/config', async (req, res) => {
   try {
     await client_redis.connect();
@@ -13,9 +13,10 @@ router.get('/config', async (req, res) => {
     const configExists = await client_redis.exists(KEY_CONFIG_NAME);
 
     if (configExists) {
-      const config = await client_redis.get(KEY_CONFIG_NAME);
+      const config = await client_redis.hGetAll(KEY_CONFIG_NAME);
+
       client_redis.disconnect();
-      return res.send(JSON.parse(config));
+      return res.send(unflatten(config));
     }
 
     const config = {
@@ -29,8 +30,7 @@ router.get('/config', async (req, res) => {
         }
       });
     });
-
-    await client_redis.set(KEY_CONFIG_NAME, JSON.stringify(config));
+    await client_redis.hSet(KEY_CONFIG_NAME, flatten(config));
     client_redis.disconnect();
     res.send(config);
   } catch (error) {
