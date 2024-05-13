@@ -93,9 +93,9 @@ app.use('/',configRouter);
 // })
 
 
-appServer.listen(process.env.PORT, () => {
+appServer.listen(process.env.PORT??1212, () => {
     console.log("Đang mở api docs!");
-    console.log("Server đang chạy tại 127.0.0.1:"+process.env.PORT);
+    console.log("Server đang chạy tại 127.0.0.1:"+process.env.PORT??1212);
 
 });
 

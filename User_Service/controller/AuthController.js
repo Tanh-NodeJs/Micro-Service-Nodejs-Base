@@ -24,8 +24,8 @@ const login = async (req, res) => {
         responseLogin.message=userConst.LOGIN_SUCCESS[lang];
         responseLogin.data.token.value=tokenData.token;
         responseLogin.data.token.expires=tokenData.expires;
-        responseLogin.data.user.firstName=user.firstName;
-        responseLogin.data.user.lastName=user.lastName;
+        responseLogin.data.user.firstName=user.data.firstName;
+        responseLogin.data.user.lastName=user.data.lastName;
         
         res.send(responseLogin);
     } catch (error) {

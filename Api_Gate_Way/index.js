@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+require('dotenv').config()
 const morgan = require("morgan");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const {ROUTES} = require("./routes");

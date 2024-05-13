@@ -7,7 +7,6 @@ const redis = require('redis');
 const client_redis = redis.createClient();
 const bcrypt=require("bcrypt-nodejs")
 const tokenCreateFromUserLogin= async (data)=>{
-    console.log(data)
     const user =data.data
     var DURATION = 3600*8;
     var token = jwt.sign({ userId: user.userId,  ip: user.clientIp , passWord: user.passWord }, _JWT_SECRET, {expiresIn: DURATION});
@@ -30,7 +29,7 @@ const userLogin= async (username,password)=>{
     user.firstName="foo";
     user.lastName="bar";
     user.passWord=await bcrypt.hashSync("passs");
-    console.log(await bcrypt.compareSync("passs","$2a$10$UkJqqsxKBLsvjheg2cwu7uGv51sTqSPcjLpGTbeFMfBVyBgdkY2Vy"))
+    // console.log(await bcrypt.compareSync("passs","$2a$10$UkJqqsxKBLsvjheg2cwu7uGv51sTqSPcjLpGTbeFMfBVyBgdkY2Vy"))
     //end to remove
     const result={
         status:null,
@@ -53,7 +52,10 @@ const userLogin= async (username,password)=>{
 
         result.status=userConst.LOGIN_SUCCESS._CODE;
         result.data=user;
-        client_redis.hSet("user:"+user.userId,user);
+        await client_redis.connect();
+        client_redis.set("user_"+user.userId,JSON.stringify(user))
+        // console.log(JSON.parse(await client_redis.get("user_1"))) 
+        client_redis.disconnect()
         return result;
 }
 module.exports={tokenCreateFromUserLogin,userLogin}
